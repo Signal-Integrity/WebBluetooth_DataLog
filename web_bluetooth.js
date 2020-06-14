@@ -24,7 +24,7 @@ function connect()
         service => {
             console.log ("> Getting Service ...");
             console.log ("> Service : " + service);
-            return service.getCharacteristic (`UART_SERVICE_CHARACTERISTICS_UUID`);
+            return service.getCharacteristic (UART_SERVICE_CHARACTERISTICS_UUID);
         }
     ) .then (
         chara => {
