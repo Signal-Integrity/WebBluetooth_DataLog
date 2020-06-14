@@ -1,12 +1,14 @@
 //microbit Bluetooth UUID
 const UART_SERVICE_UUID = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E";
-const UART_SERVICE_CHARACTERISTICS_UUID = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E";
+const UART_CHARACTERISTICS_UUID = "6E400002-B5A3-F393-E0A9-E50E24DCCA9E";
+const TEMPERATURE_SERVICE_UUID = "E95D6100-251D-470A-A062-FA1922DFA9A8";
+const TEMPERATURE_CHARACTERISTICS_UUID = "E95D9250-251D-470A-A062-FA1922DFA9A8";
 
 function connect()
 {
     navigator.bluetooth.requestDevice({
         acceptAllDevices : true,
-        optionalservices : [UART_SERVICE_UUID]
+        optionalservices : [TEMPERATURE_SERVICE_UUID]
     }) .then (
         device => {
             console.log ("> Connectiong Device ...")
@@ -18,13 +20,13 @@ function connect()
         server => {
             console.log ("> Getting Server ...");
             console.log ("> Server : " + server);
-            return server.getPrimaryService (UART_SERVICE_UUID);
+            return server.getPrimaryService (TEMPERATURE_SERVICE_UUID);
         }
     ) .then (
         service => {
             console.log ("> Getting Service ...");
             console.log ("> Service : " + service);
-            return service.getCharacteristic (UART_SERVICE_CHARACTERISTICS_UUID);
+            return service.getCharacteristic (TEMPERATURE_CHARACTERISTICS_UUID);
         }
     ) .then (
         chara => {
